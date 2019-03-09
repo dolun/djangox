@@ -19,7 +19,7 @@ class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
 
     fieldsets = UserAdmin.fieldsets + (
-            (None, {'fields': ('estAccepte',)}),
+            (None, {'fields': ('estAccepte','first_name2','last_name2','adresse')}),
     )
 
 admin.site.register(CustomUser, CustomUserAdmin)
