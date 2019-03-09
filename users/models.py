@@ -3,6 +3,6 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     pass
-
+    estAccepte=models.BooleanField(default=False)
     def __str__(self):
-        return self.email
+        return self.username
