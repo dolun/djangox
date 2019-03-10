@@ -12,7 +12,8 @@ class CustomUserCreationForm(UserCreationForm):
          'last_name',
          'first_name2',
          'last_name2',
-         'adresse')
+         'adresse',
+         )
 
 class CustomUserChangeForm(UserChangeForm):
 

@@ -4,11 +4,26 @@
 {% block title %}Annuaire{% endblock %}
 
 {% block content %}
-<h2>Annuaire des familles</h2>
-<ul>
-    {% for famille in familles %}
-        <li>{{famille.username}}: <a href={{famille.email}}> {{famille.email}} </a></li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <h2>Annuaire des familles</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Famille</th>
+                <th>Courriel</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for famille in familles %}
+            <tr>
+                <td>{{famille.username}}</td>
+                <td><a href={{famille.email}}> {{famille.email}} </a></td>
+                <td>{{famille.points}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock content %}
