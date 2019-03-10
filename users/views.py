@@ -2,12 +2,19 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import TemplateView
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm,GardeForm
 from .models import CustomUser
 
+def declarationGardeView(request):
+    form=GardeForm(request.POST or None)
+    if form.is_valid(): 
+        pass
+    return render(request, 'pages/declaration_garde.html', locals())
+
+
 def annuaireView(request):
-    
-    return render(request, 'pages/annuaire.html', locals())    
+    return render(request, 'pages/annuaire.html', locals())   
+
 class InscriptionUserView(TemplateView):
     template_name = 'pages/inscription.html'
 

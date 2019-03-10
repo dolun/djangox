@@ -13,3 +13,9 @@ class CustomUser(AbstractUser):
     # telephone = models.
     def __str__(self):
         return self.username
+
+class Garde(models.Model):
+    pkFamille=models.PositiveIntegerField(verbose_name='pk Famille')#models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    aGarde=models.ForeignKey(CustomUser,on_delete=models.CASCADE,verbose_name='Qui a gardé les enfants?')
+    pointsATransferer=models.PositiveIntegerField(verbose_name='Nombre de points de la garde')
+    valide=models.BooleanField(default=False)

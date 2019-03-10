@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Annonces{% endblock %}
+
+{% block content %}
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for annonce in annonces %}
+            <div class="post">
+                <div class="date">
+                    {{ annonce.date }}
+                </div>
+                <h2><a href="">{{ annonce.titre }}</a></h2>
+                <p>{{ annonce.contenu}}</p>
+                <hr> 
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

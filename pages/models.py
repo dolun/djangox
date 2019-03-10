@@ -1,6 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.utils import timezone
 
+class Annonce(models.Model):
+    titre=models.CharField(verbose_name='Titre',blank=False,max_length=250)
+    date=models.DateTimeField(verbose_name="Date de publication",default=timezone.now)
+    contenu=models.TextField(blank=True)
+    def __str__(self):
+        return self.titre
 
 # class Profil(models.Model):
 
