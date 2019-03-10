@@ -3,7 +3,11 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import TemplateView
 from .forms import CustomUserCreationForm
+from .models import CustomUser
 
+def annuaireView(request):
+    
+    return render(request, 'pages/annuaire.html', locals())    
 class InscriptionUserView(TemplateView):
     template_name = 'pages/inscription.html'
 

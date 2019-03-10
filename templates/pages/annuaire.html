@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Annuaire{% endblock %}
+
+{% block content %}
+<h2>Annuaire des familles</h2>
+<ul>
+    {% for famille in familles %}
+        <li>{{famille.username}}: <a href={{famille.email}}> {{famille.email}} </a></li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
