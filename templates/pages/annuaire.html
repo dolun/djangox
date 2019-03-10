@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th>Famille</th>
-                <th>Courriel</th>
+                <th>Contact</th>
                 <th>Points</th>
             </tr>
         </thead>
@@ -18,7 +18,7 @@
             {% for famille in familles %}
             <tr>
                 <td>{{famille.username}}</td>
-                <td><a href={{famille.email}}> {{famille.email}} </a></td>
+                <td><a href="mailto:{{famille.email}}"> {{famille.email}} </a></td>
                 <td>{{famille.points}}</td>
             </tr>
             {% endfor %}
