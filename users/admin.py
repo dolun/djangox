@@ -18,9 +18,12 @@ from .models import CustomUser,Garde
 class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
 
-    fieldsets = UserAdmin.fieldsets + (
-            (None, {'fields': ('estAccepte','first_name2','last_name2','adresse','points')}),
-    )
+    fieldsets =  ((None, {'fields': ('estAccepte','first_name2','last_name2','adresse','points')}),)+UserAdmin.fieldsets
+
+class GardeAdmin(admin.ModelAdmin):
+    list_display= [field.name for field in Garde._meta.get_fields()]
+    #('aGarde','debutGarde','finGarde','pointsATransferer','valide')
+
 
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(Garde)
+admin.site.register(Garde,GardeAdmin)

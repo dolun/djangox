@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'allauth',  # new
     'allauth.account',  # new
     'crispy_forms',  # new
-
+    'bootstrap4',
+    'bootstrap_datepicker_plus',
     # Local
     'users',
     'pages',
