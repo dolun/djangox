@@ -11,7 +11,8 @@ urlpatterns = [
     path('about/', AboutPageView.as_view(), name='about'),
     path('annonces/',
          ListView.as_view(
-             model=Annonce,
+            #  model=Annonce,
+             queryset = Annonce.objects.order_by('-date'),
              context_object_name="annonces",
              template_name="pages/annonces.html"),
          name='annonces',),

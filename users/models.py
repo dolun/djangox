@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class CustomUser(AbstractUser):
     pass
-    estAccepte=models.BooleanField(default=False,verbose_name=" Famille acceptée")
+    estAccepte=models.BooleanField(default=False,verbose_name=" Famille validée")
     points=models.IntegerField(default=0,verbose_name="Points")
     first_name2=models.CharField(default='',max_length=100,
             verbose_name="prénom du second parent",blank=True)

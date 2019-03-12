@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 # from django.core.urlresolvers import reverse_lazy
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 from django.views.generic import TemplateView, CreateView
@@ -49,8 +50,9 @@ class DeclarationGardeCreate(generic.edit.CreateView):
             "format": 'DD/MM/YYYY HH:mm',
             "locale": "fr", }
         )
-        form.fields['aGarde'] = ModelChoiceField(queryset=CustomUser.objects.exclude(username=username),
-                                                 label='Qui a gardé vos enfants?')
+        form.fields['aGarde'] = ModelChoiceField(
+            queryset=CustomUser.objects.exclude(username=username).filter(estAccepte=True),
+            label='Qui a gardé vos enfants?')
         return form
 
     def save(self):
@@ -82,11 +84,16 @@ def inscriptionUserView(request):
         # envoyeur = form.cleaned_data['envoyeur']
         # renvoi = form.cleaned_data['renvoi']
         # Nous pourrions ici envoyer l'e-mail grâce aux données
-        candidat = form.save(commit=False)
+        candidat = form.save()
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        print("raw_password", username, raw_password,)
+        user = authenticate(username=username, password=raw_password)
+        login(request, user)
         # post.author = request.user
         # candidat.published_date = timezone.now()
-        candidat.save()
-        print("candidat enregistré", request.user.username)
+        print("candidat enregistré", request.user.username,
+              candidat.is_authenticated)
         # que nous venons de récupérer
 
         envoi = True

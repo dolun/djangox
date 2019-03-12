@@ -17,12 +17,14 @@
         </thead>
         <tbody>
             {% for famille in familles %}
+            {% if famille.estAccepte %}
             <tr>
                 <td>{{famille.username}}</td>
                 <td><a href="mailto:{{famille.email}}"> {{famille.email}} </a></td>
                 <td>{{famille.points}}</td>
                 <td>{{famille.adresse}}</td>
             </tr>
+            {% endif %}
             {% endfor %}
         </tbody>
     </table>

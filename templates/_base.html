@@ -39,6 +39,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
+      {% if user.is_authenticated %}
       {% if user.estAccepte %}
       <form class="form-inline ml-auto">
         <a href="{% url 'declaration_garde' %}" class="btn btn-primary mx-1 my-1">Déclarer une garde</a>
@@ -49,6 +50,10 @@
           <span class="badge badge-light">{{user.points}}</span> Points
         </a>
       </form>
+      {% else %}
+      <span class="badge badge-warning ml-auto">En attente de validation</span>
+      {% endif %}
+
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
@@ -62,6 +67,7 @@
           </div>
         </li>
       </ul>
+
       {% else %}
       <form class="form-inline ml-auto">
         <a href="{% url 'account_login' %}" class="btn btn-primary">Se connecter</a>
