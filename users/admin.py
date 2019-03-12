@@ -17,7 +17,7 @@ from .models import CustomUser,Garde
 #     list_display = ['email', 'username','first_name','last_name','estAccepte']
 class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
-
+    list_display=("username","email","points","estAccepte","is_staff")
     fieldsets =  ((None, {'fields': ('estAccepte','first_name2','last_name2','adresse','points')}),)+UserAdmin.fieldsets
 
 class GardeAdmin(admin.ModelAdmin):

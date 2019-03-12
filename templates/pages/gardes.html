@@ -1,0 +1,59 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Gardes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Gardes effectuées</h2>
+    <table class="table" >
+        <thead>
+            <tr>
+                <th>Chez    </th>
+                <th>Heure de début</th>
+                <th>Heure de fin</th>
+                <th>Points</th>
+                <th>validée</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for garde in gardesEffectuees %}
+            <tr>
+                <td>{{garde.aFaitGarder}}</td>
+                <td>{{garde.debutGarde}}</td>
+                <td>{{garde.finGarde}}</td>
+                <td>{{garde.pointsATransferer}}</td>
+                <td>{% if garde.valide%} oui {% else %} non {% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div style="height:50px"> </div>    
+<div class="container">
+    <h2>Gardes dont vous avez bénéficiez</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>A gardé</th>
+                <th>Heure de début</th>
+                <th>Heure de fin</th>
+                <th>Points</th>
+                <th>validée</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for garde in gardesDemandees %}
+            <tr>
+                <td>{{garde.aGarde}}</td>
+                <td>{{garde.debutGarde}}</td>
+                <td>{{garde.finGarde}}</td>
+                <td>-{{garde.pointsATransferer}}</td>
+                <td>{% if garde.valide%} oui {% else %} non {% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

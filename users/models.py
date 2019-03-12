@@ -16,8 +16,9 @@ class CustomUser(AbstractUser):
         return self.username
 
 class Garde(models.Model):
-    aFaitGarder=models.PositiveIntegerField(verbose_name='pk Famille',default=888)#models.ForeignKey(CustomUser,on_delete=models.CASCADE)
-    aGarde=models.ForeignKey(CustomUser,on_delete=models.CASCADE,verbose_name='Qui a gardé les enfants?')
+    # aFaitGarder=models.PositiveIntegerField(verbose_name='pk Famille',default=888)#models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    aFaitGarder=models.CharField(max_length=200, verbose_name='A fait garder',default="XXX")#models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    aGarde=models.ForeignKey(CustomUser,on_delete=models.CASCADE,verbose_name='Qui a gardé vos enfants?')
     debutGarde=models.DateTimeField(default=timezone.now,verbose_name='Heure de début de la garde')
     finGarde=models.DateTimeField(default=timezone.now,verbose_name='Heure de fin de la garde')
     pointsATransferer=models.PositiveIntegerField(verbose_name='Nombre de points de la garde',default=0)

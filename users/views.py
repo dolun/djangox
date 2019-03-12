@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 # from django.core.urlresolvers import reverse_lazy
 from django.urls import reverse
 from django.utils import timezone
@@ -10,6 +10,7 @@ from .models import CustomUser, Garde
 from bootstrap_datepicker_plus import DateTimePickerInput
 from django.views import generic
 from django.http import HttpResponse, HttpResponseRedirect
+from django.forms import ModelChoiceField
 
 # from .models import Choice, Question
 
@@ -28,27 +29,28 @@ class DeclarationGardeCreate(generic.edit.CreateView):
 
     def form_valid(self, form):
         garde = form.save(commit=False)
-        garde.aFaitGarder = self.request.user.pk
+        garde.aFaitGarder = self.request.user.username
         garde.pub_date = timezone.now()
         garde.save()
         print(f"garde enregistrée {garde.debutGarde} {garde.finGarde} ")
-        return redirect('garde_enregistree')#HttpResponseRedirect(obj.get_absolute_url())
-
+        # HttpResponseRedirect(obj.get_absolute_url())
+        return redirect('garde_enregistree')
 
     def get_form(self):
-        print("get_form",self.request.user.pk)
+        username = self.request.user.username
+        print("get_form", username)
         form = super().get_form()
         form.fields['debutGarde'].widget = DateTimePickerInput(options={
             "format": 'DD/MM/YYYY HH:mm',
             "locale": "fr", }
-            
-            )
+
+        )
         form.fields['finGarde'].widget = DateTimePickerInput(options={
             "format": 'DD/MM/YYYY HH:mm',
             "locale": "fr", }
-            
-            )
-        # form.fields['pkFamille']=1
+        )
+        form.fields['aGarde'] = ModelChoiceField(queryset=CustomUser.objects.exclude(username=username),
+                                                 label='Qui a gardé vos enfants?')
         return form
 
     def save(self):

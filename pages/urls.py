@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import HomePageView, AboutPageView, homePageView, gardeValidee
+from .views import HomePageView, AboutPageView, homePageView, gardeValidee,gardesView
 from .models import Annonce
 from django.views.generic import ListView
+from users.models import Garde
 
 urlpatterns = [
     # path('', HomePageView.as_view(), name='home'),
@@ -15,4 +16,5 @@ urlpatterns = [
              template_name="pages/annonces.html"),
          name='annonces',),
     path('garde_validee/', gardeValidee, name='garde_validee'),
+    path('gardes/', gardesView,name='gardes')
 ]
