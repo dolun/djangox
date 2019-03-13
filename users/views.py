@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate
 
 # Create your views here.
 from django.views.generic import TemplateView, CreateView
-from .forms import CustomUserCreationForm, GardeForm
+from .forms import CustomUserCreationForm,CustomUserChangeForm, GardeForm
 from .models import CustomUser, Garde
 from bootstrap_datepicker_plus import DateTimePickerInput
 from django.views import generic
@@ -99,3 +99,30 @@ def inscriptionUserView(request):
         envoi = True
 
     return render(request, 'pages/inscription.html', locals())
+
+def editUserView(request):
+    customUser=CustomUser.objects.get(username=request.user.username)
+    form = CustomUserChangeForm(request.POST or None,instance=customUser)
+
+    if form.is_valid():
+        # Ici nous pouvons traiter les données du formulaire
+        # sujet = form.cleaned_data['sujet']
+        # message = form.cleaned_data['message']
+        # envoyeur = form.cleaned_data['envoyeur']
+        # renvoi = form.cleaned_data['renvoi']
+        # Nous pourrions ici envoyer l'e-mail grâce aux données
+        candidat = form.save()
+        # username = form.cleaned_data.get('username')
+        # raw_password = form.cleaned_data.get('password1')
+        #print("raw_password", username, raw_password,)
+        # user = authenticate(username=username, password=raw_password)
+        # login(request, user)
+        # post.author = request.user
+        # candidat.published_date = timezone.now()
+        print("profil sauvé", request.user.username,
+              candidat.is_authenticated)
+        # que nous venons de récupérer
+
+        envoi = True
+
+    return render(request, 'pages/editionProfil.html', locals())

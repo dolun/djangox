@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block css %}
+  {% load bootstrap4 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery='full' %}
+  {{ form.media }}
+{% endblock css%}
+
+{% block content %} 
+{% if envoi %}
+<p>
+Votre profil a bien été enregistré. 
+</p>
+{% else %}
+  <div class="container">
+    {% comment %} <div class="col-md-3 text-center"> {% endcomment %}
+    <div class="mx-auto" style="width: 300px;"  text-center>
+      <form method="post">{% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        {% endbuttons %}
+      </form>
+    </div>
+  </div>
+{% endif %}
+{% endblock content %} 

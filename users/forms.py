@@ -5,7 +5,7 @@ from bootstrap_datepicker_plus import DateTimePickerInput
 
 
 # class GardeForm(forms.ModelForm):
-    
+
 #     class Meta:
 #         model = Holiday
 #         widgets = {
@@ -19,25 +19,30 @@ class GardeForm(forms.ModelForm):
         #           'debutGarde',
         #           'finGarde',
         #           'pointsATransferer',)
-        exclude = ['aFaitGarder','valide','pub_date']
+        exclude = ['aFaitGarder', 'valide', 'pub_date']
 
 
 class CustomUserCreationForm(UserCreationForm):
-
     class Meta(UserCreationForm.Meta):
         model = CustomUser
-        fields = ('email',
-                  'username',
-                  'first_name',
-                  'last_name',
-                  'first_name2',
-                  'last_name2',
+        fields = ('username',
+                  'email',
+                  'first_name', 'last_name',
+                  'first_name2', 'last_name2',
                   'adresse',
+                  'telephone_fixe', 'telephone_portable',
+                  'enfant1', 'naissance1',
                   )
 
-
 class CustomUserChangeForm(UserChangeForm):
+    password = None
 
     class Meta:
         model = CustomUser
-        fields = ('email', 'username', 'first_name', 'last_name')
+        fields = ('email',
+                  'first_name', 'last_name',
+                  'first_name2', 'last_name2',
+                  'adresse',
+                  'telephone_fixe', 'telephone_portable',
+                  'enfant1', 'naissance1',
+                  )

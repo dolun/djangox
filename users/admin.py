@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser,Garde
+from .models import CustomUser, Garde
 
 # class CustomUserChangeForm(UserChangeForm):
 #     class Meta(UserChangeForm.Meta):
@@ -15,15 +15,24 @@ from .models import CustomUser,Garde
 #     form = CustomUserChangeForm
 #     model = CustomUser
 #     list_display = ['email', 'username','first_name','last_name','estAccepte']
+
+
 class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
-    list_display=("username","email","points","estAccepte","is_staff")
-    fieldsets =  ((None, {'fields': ('estAccepte','first_name2','last_name2','adresse','points')}),)+UserAdmin.fieldsets
+    list_display = ("username", "email", "points", "estAccepte", "is_staff")
+    fieldsets = ((None, {'fields': ('estAccepte',
+                                    'first_name2','last_name2',
+                                    'adresse',
+                                    'telephone_fixe', 'telephone_portable',
+                                    'enfant1', 'naissance1',
+                                    'points',
+                                    )}),)+UserAdmin.fieldsets
+
 
 class GardeAdmin(admin.ModelAdmin):
-    list_display= [field.name for field in Garde._meta.get_fields()]
-    #('aGarde','debutGarde','finGarde','pointsATransferer','valide')
+    list_display = [field.name for field in Garde._meta.get_fields()]
+    # ('aGarde','debutGarde','finGarde','pointsATransferer','valide')
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(Garde,GardeAdmin)
+admin.site.register(Garde, GardeAdmin)

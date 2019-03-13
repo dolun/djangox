@@ -1,11 +1,14 @@
-from django.urls import path
+from django.urls import path,reverse
 from django.views.generic import ListView, TemplateView
-from .views import InscriptionUserView, inscriptionUserView, annuaireView, declarationGardeView, DeclarationGardeCreate
+from .views import (InscriptionUserView,
+                    inscriptionUserView, editUserView,
+                    annuaireView, declarationGardeView, DeclarationGardeCreate)
 from .models import CustomUser, Garde
 
 urlpatterns = [
     # path('inscription/', InscriptionUserView.as_view(), name='account_inscription'),
     path('inscription/', inscriptionUserView, name='account_inscription'),
+    path('edition/', editUserView, name='account_edition'),
     # path('annuaire/', annuaireView,name='annuaire')
 
     # path('declaration-garde',declarationGardeView,name='declaration_garde'),
@@ -16,6 +19,7 @@ urlpatterns = [
          name='annuaire',),
     path('commission', TemplateView.as_view(
         template_name="pages/commission.html"), name='commission'),
-    path('garde_enregistree',TemplateView.as_view(
+    path('garde_enregistree', TemplateView.as_view(
         template_name="pages/garde_enregistree.html"), name='garde_enregistree'),
+    # path('password/',TemplateView.as_view(reverse('account_change_password'))),
 ]
