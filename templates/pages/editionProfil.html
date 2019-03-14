@@ -17,9 +17,9 @@ Votre profil a bien été enregistré.
 {% else %}
   <div class="container">
     {% comment %} <div class="col-md-3 text-center"> {% endcomment %}
-    <div class="mx-auto" style="width: 300px;"  text-center>
-      <form method="post">{% csrf_token %}
-        {% bootstrap_form form %}
+    <div class="mx-auto my-auto"  text-center>
+      <form method="post" >{% csrf_token %}
+        {% bootstrap_form form  layout='horizontal'%}
         {% buttons %}
         <button type="submit" class="btn btn-primary">Enregistrer</button>
         {% endbuttons %}

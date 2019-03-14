@@ -29,7 +29,6 @@ def gardeValidee(request):
             return render(request, 'pages/garde_validee.html') 
     return  TemplateView.as_view('pages/home.html')
 
-
 def homePageView(request):
     user=request.user
     if not request.user.is_anonymous:

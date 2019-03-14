@@ -32,6 +32,9 @@ class CustomUserCreationForm(UserCreationForm):
                   'adresse',
                   'telephone_fixe', 'telephone_portable',
                   'enfant1', 'naissance1',
+                  'enfant2', 'naissance2',
+                  'enfant3', 'naissance3',
+                  'enfant4', 'naissance4',
                   )
 
 class CustomUserChangeForm(UserChangeForm):
@@ -45,4 +48,7 @@ class CustomUserChangeForm(UserChangeForm):
                   'adresse',
                   'telephone_fixe', 'telephone_portable',
                   'enfant1', 'naissance1',
+                  'enfant2', 'naissance2',
+                  'enfant3', 'naissance3',
+                  'enfant4', 'naissance4',
                   )

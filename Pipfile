@@ -7,8 +7,8 @@ name = "pypi"
 django = "*"
 django-allauth = "*"
 django-crispy-forms = "*"
-django-bootstrap4 = "*"
 django-bootstrap-datepicker-plus = "*"
+django-bootstrap4 = "*"
 
 [dev-packages]
 "autopep8" = "*"
