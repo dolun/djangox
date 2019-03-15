@@ -82,9 +82,9 @@
   {% if nbGardesAValider %}
   <div class="container">
   <div class="jumbotron mx-auto" style="background-color:rgb(230, 173, 187)">
-    <p> Validez vous la garde que vous avez effectuée chez {{chezQui.username}} du {{garde.debutGarde}} au
+    <p> Validez vous la garde effectuée par {{gardien.username}} du {{garde.debutGarde}} au
       {{garde.finGarde}}?</p>
-    <p>Vous serez crédité de {{garde.pointsATransferer}} points.  
+    <p>Vous serez débité de {{garde.pointsATransferer}} points.  
       <span>  </span> <a href="{% url 'garde_validee' %}" class="btn btn-success">OK</a>  </p>
   </div>
   </div>

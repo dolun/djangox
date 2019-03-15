@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import HomePageView, AboutPageView, homePageView, gardeValidee,gardesView
+from .views import HomePageView, AboutPageView, homePageView, gardeValidee,gardesView,familleView
 from .models import Annonce
 from django.views.generic import ListView
 from users.models import Garde
@@ -17,5 +17,6 @@ urlpatterns = [
              template_name="pages/annonces.html"),
          name='annonces',),
     path('garde_validee/', gardeValidee, name='garde_validee'),
-    path('gardes/', gardesView,name='gardes')
+    path('gardes/', gardesView,name='gardes'),
+    path('famille/<id_famille>', familleView, name="famille")
 ]

@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Home page{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Famille</h2>
+    <table class="table">
+        <tbody>
+            {% for item in famille  %}
+        
+            <tr>
+                <td>{{item}}</td>
+                <td>{{item.attribute}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

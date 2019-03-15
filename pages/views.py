@@ -1,31 +1,37 @@
 from django.views.generic import TemplateView
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from users.models import Garde,CustomUser 
+from users.forms import CustomUserChangeForm
 
-
+    # customUser=CustomUser.objects.get(username=request.user.username)
+    # form = CustomUserChangeForm(request.POST or None,instance=customUser)
+def familleView(request,id_famille):
+    user=get_object_or_404(CustomUser,pk=id_famille)
+    famille=CustomUserChangeForm(instance=user)
+    return render(request, 'pages/famille.html', {'famille':famille}) 
+   
 def gardesView(request):
-    gardesEffectuees=Garde.objects.filter(aGarde=request.user).order_by('-finGarde')
-    gardesDemandees=Garde.objects.filter(aFaitGarder=request.user.username).order_by('-finGarde')
+    gardesEffectuees=Garde.objects.filter(aGarde=request.user.username).order_by('-finGarde')
+    gardesDemandees=Garde.objects.filter(aFaitGarder=request.user).order_by('-finGarde')
     return render(request, 'pages/gardes.html', locals()) 
 
 def gardeValidee(request):
     user=request.user
     if not request.user.is_anonymous:
-        gardesAValider=Garde.objects.filter(aGarde=user).filter(valide=False)
+        gardesAValider=Garde.objects.filter(aFaitGarder=user).filter(valide=False)
         nbGardesAValider=gardesAValider.count()   
         if nbGardesAValider>0:
             garde=gardesAValider[0] 
-            garde.aFaitGarder
-            chezQui=CustomUser.objects.get(username=garde.aFaitGarder)
+            gardien=CustomUser.objects.get(username=garde.aGarde)
 
             points=garde.pointsATransferer
-            chezQui.points-=points
-            user.points+=points
+            gardien.points+=points
+            user.points-=points
             garde.valide=True
-            print(f"nb de points de la garde validee: {points}  ",user,chezQui)
+            print(f"nb de points de la garde validee: {points}  ",user,gardien)
             garde.save()
             user.save()
-            chezQui.save()
+            gardien.save()
             return render(request, 'pages/garde_validee.html') 
     return  TemplateView.as_view('pages/home.html')
 
@@ -33,14 +39,13 @@ def homePageView(request):
     user=request.user
     if not request.user.is_anonymous:
         print("XXXX",user)
-        gardesAValider=Garde.objects.filter(aGarde=user).filter(valide=False)
+        gardesAValider=Garde.objects.filter(aFaitGarder=user).filter(valide=False)
         print('gardesAValider',gardesAValider)
         nbGardesAValider=gardesAValider.count()  
         print('nbGardesAValider',nbGardesAValider) 
         if nbGardesAValider>0:
             garde=gardesAValider[0] 
-            garde.aFaitGarder
-            chezQui=CustomUser.objects.get(username=garde.aFaitGarder)
+            gardien=CustomUser.objects.get(username=garde.aGarde)
     return render(request, 'pages/home.html', locals()) 
 
 class HomePageView(TemplateView):

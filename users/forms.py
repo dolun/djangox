@@ -19,7 +19,7 @@ class GardeForm(forms.ModelForm):
         #           'debutGarde',
         #           'finGarde',
         #           'pointsATransferer',)
-        exclude = ['aFaitGarder', 'valide', 'pub_date']
+        exclude = ['aGarde', 'valide', 'pub_date']
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -31,10 +31,10 @@ class CustomUserCreationForm(UserCreationForm):
                   'first_name2', 'last_name2',
                   'adresse',
                   'telephone_fixe', 'telephone_portable',
-                  'enfant1', 'naissance1',
-                  'enfant2', 'naissance2',
-                  'enfant3', 'naissance3',
-                  'enfant4', 'naissance4',
+                  'enfant1',# 'naissance1',
+                  'enfant2',# 'naissance2',
+                  'enfant3',# 'naissance3',
+                  'enfant4',# 'naissance4',
                   )
 
 class CustomUserChangeForm(UserChangeForm):
@@ -47,8 +47,8 @@ class CustomUserChangeForm(UserChangeForm):
                   'first_name2', 'last_name2',
                   'adresse',
                   'telephone_fixe', 'telephone_portable',
-                  'enfant1', 'naissance1',
-                  'enfant2', 'naissance2',
-                  'enfant3', 'naissance3',
-                  'enfant4', 'naissance4',
+                  'enfant1',# 'naissance1',
+                  'enfant2',# 'naissance2',
+                  'enfant3',# 'naissance3',
+                  'enfant4',# 'naissance4',
                   )

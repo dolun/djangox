@@ -30,7 +30,7 @@ class DeclarationGardeCreate(generic.edit.CreateView):
 
     def form_valid(self, form):
         garde = form.save(commit=False)
-        garde.aFaitGarder = self.request.user.username
+        garde.aGarde = self.request.user.username
         garde.pub_date = timezone.now()
         garde.save()
         print(f"garde enregistrée {garde.debutGarde} {garde.finGarde} ")
@@ -50,9 +50,10 @@ class DeclarationGardeCreate(generic.edit.CreateView):
             "format": 'DD/MM/YYYY HH:mm',
             "locale": "fr", }
         )
-        form.fields['aGarde'] = ModelChoiceField(
+        form.fields['aFaitGarder'] = ModelChoiceField(
             queryset=CustomUser.objects.exclude(username=username).filter(estAccepte=True),
-            label='Qui a gardé vos enfants?')
+            label='Bénéficiaire de la garde?'
+            )
         return form
 
     def save(self):

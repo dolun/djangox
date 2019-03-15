@@ -24,10 +24,10 @@ class CustomUserAdmin(UserAdmin):
                                     'first_name2','last_name2',
                                     'adresse',
                                     'telephone_fixe', 'telephone_portable',
-                                    'enfant1', 'naissance1',
-                                    'enfant2', 'naissance2',
-                                    'enfant3', 'naissance3',
-                                    'enfant4', 'naissance4',
+                                    'enfant1',# 'naissance1',
+                                    'enfant2',# 'naissance2',
+                                    'enfant3',# 'naissance3',
+                                    'enfant4',# 'naissance4',
                                     'points',
                                     )}),)+UserAdmin.fieldsets
 
