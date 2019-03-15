@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate
 
 # Create your views here.
 from django.views.generic import TemplateView, CreateView
-from .forms import CustomUserCreationForm,CustomUserChangeForm, GardeForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, GardeForm
 from .models import CustomUser, Garde
 from bootstrap_datepicker_plus import DateTimePickerInput
 from django.views import generic
@@ -51,9 +51,10 @@ class DeclarationGardeCreate(generic.edit.CreateView):
             "locale": "fr", }
         )
         form.fields['aFaitGarder'] = ModelChoiceField(
-            queryset=CustomUser.objects.exclude(username=username).filter(estAccepte=True),
+            queryset=CustomUser.objects.exclude(
+                username=username).filter(estAccepte=True),
             label='Bénéficiaire de la garde?'
-            )
+        )
         return form
 
     def save(self):
@@ -101,9 +102,10 @@ def inscriptionUserView(request):
 
     return render(request, 'pages/inscription.html', locals())
 
+
 def editUserView(request):
-    customUser=CustomUser.objects.get(username=request.user.username)
-    form = CustomUserChangeForm(request.POST or None,instance=customUser)
+    customUser = CustomUser.objects.get(username=request.user.username)
+    form = CustomUserChangeForm(request.POST or None, instance=customUser)
 
     if form.is_valid():
         # Ici nous pouvons traiter les données du formulaire

@@ -1,23 +1,21 @@
 {% extends '_base.html' %}
 {% load static %}
 
-{% block title %}Home page{% endblock title %}
-
+{% block title %}Famille {{nom}}{% endblock title %}
+{% block css %}
+  {% load bootstrap4 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery='full' %}
+  {{ form.media }}
+{% endblock css%}
 {% block content %}
-
-<div class="container">
-    <h2>Famille</h2>
-    <table class="table">
-        <tbody>
-            {% for item in famille  %}
-        
-            <tr>
-                <td>{{item}}</td>
-                <td>{{item.attribute}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-
+<h2>Famille {{nom}}:</h2>
+  <div class="container">
+    {% comment %} <div class="col-md-3 text-center"> {% endcomment %}
+    <div class="mx-auto my-auto"  text-center>
+      <form method="post" >{% csrf_token %}
+        {% bootstrap_form famille  layout='horizontal'%}
+      </form>
+    </div>
+  </div>
 {% endblock content %}

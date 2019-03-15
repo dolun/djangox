@@ -8,7 +8,9 @@ from users.forms import CustomUserChangeForm
 def familleView(request,id_famille):
     user=get_object_or_404(CustomUser,pk=id_famille)
     famille=CustomUserChangeForm(instance=user)
-    return render(request, 'pages/famille.html', {'famille':famille}) 
+    for field in famille.fields:
+        famille.fields[field].widget.attrs['readonly'] = True
+    return render(request, 'pages/famille.html', {'famille':famille,'nom':user.username}) 
    
 def gardesView(request):
     gardesEffectuees=Garde.objects.filter(aGarde=request.user.username).order_by('-finGarde')
