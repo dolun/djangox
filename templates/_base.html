@@ -9,12 +9,11 @@
   <title>{% block title %}DjangoX{% endblock title %}</title>
   <meta name="description" content="A framework for launching new Django projects quickly.">
   <meta name="author" content="">
-  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/faviconx.ico' %}">
 
   {% block css %}
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"  >
 
   {% comment %}
   <link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
@@ -32,7 +31,8 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+ <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 
+      style="background-color:rgb(230, 173, 187)"> 
     <a class="navbar-brand" href="{% url 'home' %}">LA RONDE DES FAMILLES</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
       aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,11 +81,12 @@
 
   {% if nbGardesAValider %}
   <div class="container">
-  <div class="jumbotron mx-auto" style="background-color:rgb(230, 173, 187)">
+  <div class="alert alert-danger">{% comment %}  style="background-color:rgb(230, 173, 187)"> {% endcomment %}
     <p> Validez vous la garde effectuée par {{gardien.username}} du {{garde.debutGarde}} au
       {{garde.finGarde}}?</p>
     <p>Vous serez débité de {{garde.pointsATransferer}} points.  
-      <span>  </span> <a href="{% url 'garde_validee' %}" class="btn btn-success">OK</a>  </p>
+      <span>  </span>
+       <a href="{% url 'garde_validee' %}" class="btn btn-success">OK</a>  </p>
   </div>
   </div>
   {% endif %}
@@ -108,9 +109,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}" ></script>
 
   <!-- 3rd party JavaScript -->
 
