@@ -15,6 +15,9 @@
                 </div>
                 <h2><a href="">{{ annonce.titre }}</a></h2>
                 <p>{{ annonce.contenu}}</p>
+                {% if annonce.photo %}
+                <img src="{{annonce.photo.url}}"/>
+                {% endif %}
                 <hr> 
             </div>
             {% endfor %}

@@ -6,6 +6,7 @@ class Annonce(models.Model):
     titre=models.CharField(verbose_name='Titre',blank=False,max_length=250)
     date=models.DateTimeField(verbose_name="Date de publication",default=timezone.now)
     contenu=models.TextField(blank=True)
+    photo=models.FileField(blank=True,upload_to="photos/")
     def __str__(self):
         return self.titre
 

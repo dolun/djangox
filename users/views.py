@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth import login, authenticate
-
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 from django.views.generic import TemplateView, CreateView
 from .forms import CustomUserCreationForm, CustomUserChangeForm, GardeForm
@@ -89,15 +90,22 @@ def inscriptionUserView(request):
         candidat = form.save()
         username = form.cleaned_data.get('username')
         raw_password = form.cleaned_data.get('password1')
-        print("raw_password", username, raw_password,)
+        # print("raw_password", username, raw_password,)
         user = authenticate(username=username, password=raw_password)
         login(request, user)
         # post.author = request.user
         # candidat.published_date = timezone.now()
         print("candidat enregistré", request.user.username,
-              candidat.is_authenticated)
+              candidat.is_authenticated,candidat.email,)
         # que nous venons de récupérer
 
+        subject = 'Thank you for registering to our site'
+        message = ' it  means a world to us '
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [candidat.email,]
+        ret=send_mail( subject, message, email_from, recipient_list )
+        print(f"envoi courriel: {ret}")
+        
         envoi = True
 
     return render(request, 'pages/inscription.html', locals())
