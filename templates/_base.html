@@ -9,11 +9,12 @@
   <title>{% block title %}DjangoX{% endblock title %}</title>
   <meta name="description" content="A framework for launching new Django projects quickly.">
   <meta name="author" content="">
-  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/faviconx.ico' %}">
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/rondeFamilles.png' %}">
 
-  {% block css %}
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"  >
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% block css %}
 
   {% comment %}
   <link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
@@ -22,7 +23,6 @@
   <script src="//cdn.bootcss.com/moment.js/2.17.1/moment.min.js"></script> {% endcomment %}
 
 
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% comment %}
   <script src="//code.jquery.com/jquery.min.js"></script> {% endcomment %}
 
@@ -30,10 +30,13 @@
 
 </head>
 
-<body>
- <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 
-      style="background-color:rgb(230, 173, 187)"> 
-    <a class="navbar-brand" href="{% url 'home' %}">LA RONDE DES FAMILLES</a>
+<body class="bg"  >
+ <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark style= "background-color:rgb(230, 173, 187);" > 
+  <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'images/rondeFamilles.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+    LA RONDE DES FAMILLES
+  </a>
+    {% comment %} <a class="navbar-brand" href="{% url 'home' %}">LA RONDE DES FAMILLES</a> {% endcomment %}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
       aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -80,7 +83,7 @@
   </nav>
 
   {% if nbGardesAValider %}
-  <div class="container">
+  <div class="container" role="main">
   <div class="alert alert-danger">{% comment %}  style="background-color:rgb(230, 173, 187)"> {% endcomment %}
     <p> Validez vous la garde effectuée par {{gardien.username}} du {{garde.debutGarde}} au
       {{garde.finGarde}}?</p>
@@ -91,10 +94,13 @@
   </div>
   {% endif %}
 
-  <div class="container">
+
+  <div class="container rounded py-2" style="background-color: rgb(241, 236, 245);">
+  {% comment %} <div class="jumbotron" style="margin-top:20px;"> {% endcomment %}
     {% block content %}
     <p>Default content...</p>
     {% endblock content %}
+  {% comment %} </div> {% endcomment %}
   </div>
 
   <!-- <nav class="navbar fixed-bottom navbar-dark bg-dark">
