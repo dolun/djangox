@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import HomePageView, AboutPageView, homePageView, gardeValidee,gardesView,familleView,AnnoncesView
+from .views import HomePageView, AboutPageView, homePageView, gardeValidee,gardesView,familleView#,AnnoncesView
 from .models import Annonce
 from django.views.generic import ListView
 from users.models import Garde

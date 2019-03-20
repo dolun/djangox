@@ -4,7 +4,8 @@ from users.models import Garde, CustomUser
 from users.forms import CustomUserChangeForm
 from django.views.generic import ListView
 from .models import Annonce
-
+from django.conf import settings
+from django.contrib import messages
     # customUser=CustomUser.objects.get(username=request.user.username)
     # form = CustomUserChangeForm(request.POST or None,instance=customUser)
 
@@ -50,6 +51,9 @@ def gardeValidee(request):
 
 def homePageView(request):
     user = request.user
+    # messages.add_message(request, messages.INFO, 'Bonjour visiteur !')
+    # messages.error(request, 'Cette image n\'existe plus.')
+    print(f"HOME: {settings.MEDIA_ROOT} {settings.MEDIA_URL}") 
     if not request.user.is_anonymous:
         print("XXXX", user)
         gardesAValider = Garde.objects.filter(
@@ -68,14 +72,15 @@ class HomePageView(TemplateView):
 
 
 class AboutPageView(TemplateView):
+    print("about!!")
     template_name = 'pages/about.html'
 
 
-class AnnoncesView(ListView):
+# class AnnoncesView(ListView):
 
-    queryset = Annonce.objects.order_by('-date')
-    context_object_name = "annonces"
-    template_name = "pages/annonces.html"
-    print(queryset)
-    for annonce in queryset:
-        print(annonce.photo)
+#     queryset = Annonce.objects.order_by('-date')
+#     context_object_name = "annonces"
+#     template_name = "pages/annonces.html"
+#     print(queryset)
+#     for annonce in queryset:
+#         print(annonce.photo)
