@@ -7,7 +7,7 @@
 
 <div class="content container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             {% for annonce in annonces %}
             <div class="post">
                 <div class="date">
@@ -16,7 +16,7 @@
                 <h2><a href="">{{ annonce.titre }}</a></h2>
                 <p>{{ annonce.contenu}}</p>
                 {% if annonce.photo %}
-                <img src="{{annonce.photo.url}}"/>
+                <img  class="img-fluid rounded" src="{{annonce.photo.url}}"/>
                 {% endif %}
                 <hr> 
             </div>
@@ -26,3 +26,5 @@
 </div>
 
 {% endblock content %}
+
+{% comment %} style="width:100%; max-width:200%;" width="100%"{% endcomment %}
